@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- mappers/gueset.xml -->
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.happyhouse.model.dao.EnvBuildingDao">
+<!-- 이름을 dao의 클래스로 바꿔줘야 조금 더 편한방식으로 사용할 수 있다. -->
+<select id="searchWater" parameterType="String" resultType="EnvBuilding">
+	select * 
+	from Envbuilding
+	where address like concat('%', #{dong}, '%')and code=22
+</select>
+
+<select id="searchAir" parameterType="String" resultType="EnvBuilding">
+	select * 
+	from Envbuilding
+	where address like concat('%', #{dong}, '%') and code=21
+</select>
+
+<select id="searchGreen" parameterType="String" resultType="Env">
+	select * 
+	from env
+	where  dong like concat('%', #{dong}, '%')
+</select>
+</mapper>    
+    
+    
+    
+    
+    
+    

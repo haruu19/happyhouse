@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- mappers/gueset.xml -->
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.happyhouse.model.dao.FavDao">
+<!-- 이름을 dao의 클래스로 바꿔줘야 조금 더 편한방식으로 사용할 수 있다. -->
+<insert id="insertFav" parameterType="Fav">
+	insert into fav(
+	id, 
+	local, 
+	city, 
+	dong
+	) values ( 
+	#{id} ,
+	#{local}, 
+	#{city},
+	#{dong}
+	)
+</insert>
+
+<select id="searchFav" parameterType="String" resultType="Fav">
+	select id, dong, city, (SELECT gugun_name
+		FROM guguncode
+		where left(gugun_code,5) = a.city) as cityname
+	from fav a
+	where id = #{id}
+</select>
+
+<delete id="deleteFav" parameterType="Fav">
+	delete from fav 
+	where 
+	id = #{id} 
+	and dong = #{dong} 
+	and city = #{city}
+</delete>
+
+<select id="retrieveCountByDong" parameterType="String" resultType="Count">
+  select count(dong) as houseCnt,
+		(select count(dong) from store where dong=#{dong}) as storeCnt,
+        (select count(dong) from env where dong=#{dong}) as envCnt,
+        (select count(jibun) from school where jibun like CONCAT('%',#{dong},'%')) as schoolCnt
+   from housedeal
+  where dong like CONCAT('%',#{dong},'%')
+</select>
+
+</mapper>    

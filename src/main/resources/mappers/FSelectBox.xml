@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- mappers/gueset.xml -->
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.happyhouse.model.dao.FSelectBoxDAO">
+<!-- 이름을 dao의 클래스로 바꿔줘야 조금 더 편한방식으로 사용할 수 있다. -->
+
+<select id="selectSido" resultType="SidoCodeDTO">
+	SELECT left(sido_code,2) 	sido_code, 
+				sido_name
+	FROM sidocode 
+	ORDER BY sido_code
+</select>
+
+<select id="selectGugun" parameterType="String" resultType="SidoCodeDTO">
+	SELECT left(gugun_code,5) 	gugun_code, 
+				gugun_name
+	FROM guguncode
+	where left(gugun_code,2) = #{sido}
+	ORDER BY gugun_code
+</select>
+
+<select id="selectDong" parameterType="String" resultType="HouseInfoDTO">
+	SELECT distinct 	dong, 
+			code 
+	FROM houseinfo 
+	where code = #{gugun}
+	ORDER BY dong
+</select>
+
+<select id="selectApt" parameterType="String" resultType="HouseInfoDTO">
+	SELECT 	no,
+		dong,
+		AptName,
+		code,
+		jibun
+	FROM houseinfo 
+	WHERE dong = #{dong}
+	ORDER BY AptName
+</select>
+
+<select id="selectEnv" parameterType="String" resultType="Env">
+	SELECT name,
+		   address,
+	   	   dongcode,
+		   dong,
+		   lng,
+		   lat,
+		   bizcode
+	  FROM env
+  	 WHERE dong = #{dong}
+	 ORDER BY name
+	 limit 1,10
+</select>
+
+<select id="selectStore" parameterType="String" resultType="Store">
+	SELECT *
+	  FROM store
+  	 WHERE dong = #{dong}
+	 ORDER BY shopname
+	 limit 1,10
+</select>
+
+<select id="selectSchool" parameterType="String" resultType="School">
+	SELECT *
+	  FROM school
+  	 WHERE jibun like CONCAT('%',#{dong},'%')
+	 ORDER BY schoolname
+</select>
+
+</mapper>    
+    
+    
+    
+    

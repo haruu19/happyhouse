@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- mappers/gueset.xml -->
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.happyhouse.model.dao.StoreDao">
+<!-- 이름을 dao의 클래스로 바꿔줘야 조금 더 편한방식으로 사용할 수 있다. -->
+
+<select id="searchAll" resultType="Store">
+	select * from Store
+</select>
+
+<select id="searchStoreByDong" parameterType="String" resultType="Store">
+	select *
+	from store 
+	where dong like CONCAT('%', #{dong}, '%')
+</select>
+
+<select id="searchDetail" parameterType="int" resultType="Store">
+	select *
+	from store 
+	where no = #{no}
+</select>
+
+<select id="searchStoreByName" parameterType="String" resultType="Store">
+	select *
+	from store 
+	where shopname = #{shopname}
+</select>
+</mapper>    
+    
+    
+    
+    
+    
+    

@@ -1,0 +1,22 @@
+CREATE TABLE `school` (
+  `id` varchar(30) DEFAULT NULL,
+  `schoolname` varchar(30) DEFAULT NULL,
+  `schoolType` varchar(30) DEFAULT NULL,
+  `date` varchar(30) DEFAULT NULL,
+  `type` varchar(30) DEFAULT NULL,
+  `bon` varchar(30) DEFAULT NULL,
+  `oper` varchar(30) DEFAULT NULL,
+  `jibun` varchar(30) DEFAULT NULL,
+  `doro` varchar(30) DEFAULT NULL,
+  `sidoeducode` varchar(30) DEFAULT NULL,
+  `sidoeduname` varchar(30) DEFAULT NULL,
+  `edusupcode` varchar(30) DEFAULT NULL,
+  `edusupname` varchar(30) DEFAULT NULL,
+  `startdate` varchar(30) DEFAULT NULL,
+  `updatedate` varchar(30) DEFAULT NULL,
+  `lat` varchar(30) DEFAULT NULL,
+  `lng` varchar(30) DEFAULT NULL,
+  `datadate` varchar(30) DEFAULT NULL,
+  `agencycode` varchar(30) DEFAULT NULL,
+  `agencyname` varchar(30) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
